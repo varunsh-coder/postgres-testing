@@ -1,5 +1,5 @@
 name: PostgreSQL Service Example
-on: push
+on: [workflow_dispatch]
 
 
 jobs:
@@ -32,9 +32,9 @@ jobs:
       - run: cat /etc/docker/daemon.json
       - run: docker ps
       - name: Harden Runner
-        uses: h0x0er/harden-runner@docker-reload2
+        uses: step-security/harden-runner@int
         with:
-          egress-policy: block
+          egress-policy: audit
 #         allowed-endpoints: >
 #           postgres:5432 # PostgreSQL service container
       # Downloads a copy of the code in your repository before running CI tests
